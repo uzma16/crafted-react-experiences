@@ -1,0 +1,10 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Instagram, Mail, MessageCircle } from "lucide-react";
+import { PageIntro, SiteShell } from "@/components/site-shell";
+export const Route=createFileRoute("/contact")({head:()=>({meta:[{title:"Contact the Studio — NaqshKari"},{name:"description",content:"Contact NaqshKari for handmade embroidery, gifting and custom order enquiries."},{property:"og:title",content:"Contact the Studio — NaqshKari"},{property:"og:description",content:"We would love to hear what you are dreaming of."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:Contact});
+const contactMethods = [
+  { Icon: Mail, label: "Email", detail: "hello@naqshkari.in" },
+  { Icon: MessageCircle, label: "WhatsApp", detail: "Available Monday–Saturday" },
+  { Icon: Instagram, label: "Instagram", detail: "@naqshkari" },
+];
+function Contact(){return <SiteShell><PageIntro eyebrow="Come say hello" title="A warm welcome from our studio.">Questions about a piece, a gift or a custom idea? We’d be delighted to hear from you.</PageIntro><section className="mx-auto grid max-w-5xl gap-14 px-6 py-20 md:grid-cols-2"><div className="space-y-7">{contactMethods.map(({Icon,label,detail})=><div key={label} className="flex gap-4 border-b border-border pb-6"><Icon className="text-primary" size={20}/><div><p className="text-xs font-bold uppercase tracking-[.15em]">{label}</p><p className="mt-2 text-sm text-muted-foreground">{detail}</p></div></div>)}</div><form onSubmit={e=>e.preventDefault()} className="space-y-6">{["Your name","Email address","How can we help?"].map((f,i)=><label key={f} className="block"><span className="text-[10px] font-bold uppercase tracking-[.16em]">{f}</span>{i<2?<input className="mt-2 w-full border-b border-border bg-transparent py-3 outline-none focus:border-primary"/>:<textarea rows={5} className="mt-2 w-full border border-border bg-card p-4 outline-none focus:border-primary"/>}</label>)}<button className="bg-primary px-7 py-4 text-xs font-bold uppercase tracking-[.15em] text-primary-foreground">Send message</button></form></section></SiteShell>}
